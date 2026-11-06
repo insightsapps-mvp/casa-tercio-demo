@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Casa Tercio · Habanos armados a mano</title>
+<meta name="description" content="Tripa, capote, capa y anilla: mirá cómo se arma un habano mientras bajás. Casa de habanos en Recoleta, Buenos Aires.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0604">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Casa Tercio · Habanos armados a mano">
+<meta property="og:description" content="Bajá despacio y mirá cómo se arma un habano, hoja por hoja.">
+<meta property="og:image" content="https://casa-tercio-demo.onrender.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0604'/%3E%3Crect x='5' y='13' width='22' height='6' rx='3' transform='rotate(-14 16 16)' fill='%23c79a54'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="f/0001.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="m/0001.webp" media="(max-width: 759px)">
+<style>
+:root{
+  --bg:#0a0604; --bg2:#120c08; --line:rgba(241,230,210,.14);
+  --cream:#f1e6d2; --soft:rgba(241,230,210,.68); --gold:#c79a54; --gold2:#e4bf82;
+  --serif:'Bodoni Moda',Georgia,serif; --sans:'Instrument Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--cream);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px;border-radius:2px}
+::selection{background:var(--gold);color:var(--bg)}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top)) clamp(16px,4vw,44px) 18px;pointer-events:none}
+.nav>*{pointer-events:auto}
+.marca{font:500 22px/1 var(--serif);letter-spacing:.01em}
+.marca i{color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 24px;border:1px solid var(--gold);color:var(--cream);background:transparent;font:500 15px/1 var(--sans);letter-spacing:.01em;cursor:pointer;transition:background .35s var(--ease),color .35s var(--ease),transform .2s var(--ease)}
+.btn:hover{background:var(--gold);color:var(--bg)}
+.btn:active{transform:scale(.97)}
+.btn.lleno{background:var(--gold);color:var(--bg)}
+.btn.lleno:hover{background:var(--gold2);border-color:var(--gold2)}
+
+.escena{position:relative;height:640vh}
+.fijo{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
+canvas{position:absolute;inset:0;width:100%;height:100%;will-change:transform}
+.velo{position:absolute;inset:0;background:var(--bg);opacity:.66;pointer-events:none}
+.pie-fijo{position:absolute;inset:auto 0 0;height:22%;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
+
+.tit{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 16px;will-change:opacity,transform}
+.tit small{font:500 13px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);margin-bottom:26px}
+h1{font:400 clamp(50px,9.4vw,136px)/.98 var(--serif);letter-spacing:-.02em;max-width:12ch}
+h1 em{color:var(--gold2)}
+.baja{margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--soft);font-size:15px}
+.baja span{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);transform-origin:top;animation:baja 2.4s var(--ease) 3 both}
+@keyframes baja{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:.35}}
+
+.cap{position:absolute;left:clamp(16px,6vw,84px);bottom:clamp(40px,9vh,92px);max-width:470px;opacity:0;will-change:opacity,transform;padding-right:16px}
+.cap.der{left:auto;right:clamp(16px,6vw,84px);text-align:right;padding-right:0}
+.cap b{display:block;font:500 13px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px}
+.cap h2{font:400 clamp(32px,4.4vw,60px)/1.04 var(--serif);letter-spacing:-.012em;margin-bottom:12px}
+.cap p{color:var(--soft);max-width:44ch}
+.cap.der p{margin-left:auto}
+.final{left:0;right:0;bottom:clamp(40px,10vh,96px);max-width:none;text-align:center;padding:0 16px}
+.final p{margin:0 auto 22px}
+
+.riel{position:absolute;right:clamp(14px,2.4vw,30px);top:50%;height:150px;width:1px;background:var(--line);transform:translateY(-50%)}
+.riel i{position:absolute;inset:0;background:var(--gold2);transform-origin:top;transform:scaleY(0)}
+
+section{position:relative;padding:clamp(72px,12vw,150px) clamp(16px,6vw,84px)}
+.kicker{font:500 13px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);margin-bottom:18px}
+h3{font:400 clamp(36px,5.4vw,76px)/1.03 var(--serif);letter-spacing:-.015em}
+.wrap{max-width:1240px;margin:0 auto}
+
+.foto-ancha{aspect-ratio:21/9;overflow:hidden;margin:44px 0 12px}
+.fila{display:grid;grid-template-columns:1.1fr 1fr .6fr auto;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+.fila h4{font:400 clamp(26px,3vw,38px)/1.1 var(--serif)}
+.fila p{color:var(--soft);font-size:15.5px}
+.fila strong{font:500 18px/1 var(--sans);white-space:nowrap}
+
+.dos{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(32px,6vw,96px);align-items:center}
+.dos.alt{grid-template-columns:1.05fr 1fr}
+.foto{aspect-ratio:4/5;overflow:hidden}
+.dos p{color:var(--soft);margin-top:20px;max-width:46ch}
+.datos{margin-top:30px;border-top:1px solid var(--line)}
+.datos div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.datos span:last-child{color:var(--soft);text-align:right}
+
+.reserva{background:var(--bg2)}
+form{display:grid;gap:14px;margin-top:30px;max-width:460px}
+label{display:grid;gap:7px;font-size:14px;color:var(--soft)}
+input,select{width:100%;min-height:50px;padding:0 14px;background:transparent;border:1px solid var(--line);color:var(--cream);font:400 17px var(--sans);border-radius:0;appearance:none}
+input:focus,select:focus{outline:none;border-color:var(--gold2)}
+select option{color:#111}
+.ok{display:none;margin-top:30px;padding:22px;border:1px solid var(--gold);max-width:460px}
+.ok h4{font:400 28px/1.15 var(--serif);margin-bottom:6px}
+.ok p{margin:0}
+.nota{font-size:13.5px;color:var(--soft)}
+
+footer{padding:40px clamp(16px,6vw,84px) calc(40px + env(safe-area-inset-bottom));border-top:1px solid var(--line);color:var(--soft);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 34px;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.si{opacity:1;transform:none}
+
+@media (max-width:759px){
+  body{font-size:16px}
+  .escena{height:560vh}
+  canvas{-webkit-mask-image:linear-gradient(to bottom,transparent 3%,#000 18%,#000 82%,transparent 97%);mask-image:linear-gradient(to bottom,transparent 3%,#000 18%,#000 82%,transparent 97%)}
+  .cap,.cap.der{left:0;right:0;bottom:calc(26px + env(safe-area-inset-bottom));max-width:none;padding:0 16px;text-align:left}
+  .cap.der p{margin-left:0}
+  .final{text-align:center;bottom:calc(30px + env(safe-area-inset-bottom))}
+  .riel{display:none}
+  .foto-ancha{aspect-ratio:16/10}
+  .fila{grid-template-columns:1fr auto;gap:6px 16px}
+  .fila p{grid-column:1/-1;grid-row:2}
+  .fila .btn{grid-column:1/-1;width:100%;margin-top:10px}
+  .dos,.dos.alt{grid-template-columns:1fr}
+  .dos.alt .foto{order:-1}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  .baja span{animation:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="marca" href="#arriba">Casa <i>Tercio</i></a>
+  <a class="btn" href="#reserva">Reservar</a>
+</nav>
+
+<main id="arriba">
+<div class="escena" id="escena">
+  <div class="fijo">
+    <canvas id="lienzo" role="img" aria-label="Las hojas de tabaco se juntan y forman un habano mientras se baja por la página"></canvas>
+    <div class="velo" id="velo"></div>
+    <div class="pie-fijo"></div>
+
+    <div class="tit" id="tit">
+      <small>Casa de habanos · Recoleta</small>
+      <h1>Un habano no se fabrica. <em>Se arma.</em></h1>
+      <div class="baja">Bajá despacio<span></span></div>
+    </div>
+
+    <article class="cap" data-a=".1" data-b=".27">
+      <b>Tripa</b>
+      <h2>Tres hojas, tres cosechas.</h2>
+      <p>Ligero para la fuerza, seco para el aroma, volado para que arda parejo. Todo lo que vas a sentir se decide acá.</p>
+    </article>
+    <article class="cap der" data-a=".285" data-b=".44">
+      <b>Capote</b>
+      <h2>La hoja que nadie ve.</h2>
+      <p>Sostiene la tripa y le da forma. Si está mal puesta, el habano tira mal aunque el resto sea perfecto.</p>
+    </article>
+    <article class="cap" data-a=".455" data-b=".675">
+      <b>Capa</b>
+      <h2>Una sola hoja, sin una vena de más.</h2>
+      <p>Crece a la sombra y se elige a mano. Es lo primero que tocás y lo último que olvidás.</p>
+    </article>
+    <article class="cap der" data-a=".69" data-b=".86">
+      <b>Anilla</b>
+      <h2>Recién ahora tiene nombre.</h2>
+      <p>Va al final, cuando el habano ya demostró que la merece.</p>
+    </article>
+    <article class="cap final" data-a=".9" data-b="1.2">
+      <h2>Tres años para llegar hasta acá.</h2>
+      <p>Y una hora para disfrutarlo.</p>
+      <a class="btn lleno" href="#coleccion">Elegir el mío</a>
+    </article>
+
+    <div class="riel" aria-hidden="true"><i id="riel"></i></div>
+  </div>
+</div>
+
+<section id="coleccion">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">La colección</p>
+      <h3>Tres vitolas. Ni una más de las que podemos cuidar.</h3>
+    </div>
+    <div class="foto-ancha reveal"><img src="a/coleccion.webp" alt="Tres habanos de distinta medida sobre madera oscura" loading="lazy"></div>
+    <div class="fila reveal">
+      <h4>Robusto</h4><p>124 mm · cepo 50. Fuerza media, 45 minutos.</p><strong>$ 38.000</strong>
+      <button class="btn" data-vitola="Robusto">Reservar</button>
+    </div>
+    <div class="fila reveal">
+      <h4>Lancero</h4><p>192 mm · cepo 38. Fino y floral, una hora.</p><strong>$ 46.000</strong>
+      <button class="btn" data-vitola="Lancero">Reservar</button>
+    </div>
+    <div class="fila reveal">
+      <h4>Churchill</h4><p>178 mm · cepo 47. Redondo y largo, hora y media.</p><strong>$ 54.000</strong>
+      <button class="btn" data-vitola="Churchill">Reservar</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap dos">
+    <div class="foto reveal"><img src="a/cava.webp" alt="Cava de cedro con cajas de habanos" loading="lazy"></div>
+    <div class="reveal">
+      <p class="kicker">La cava</p>
+      <h3>Tu caja, guardada como corresponde.</h3>
+      <p>Dejá tus habanos con nosotros. Tenés un lugar con tu nombre, cedro español y el clima controlado todo el año. Cuando venís, ya están a punto.</p>
+      <div class="datos">
+        <div><span>Humedad</span><span>70 % todo el año</span></div>
+        <div><span>Temperatura</span><span>18 °C</span></div>
+        <div><span>Tu lugar</span><span>Con llave y a tu nombre</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap dos alt">
+    <div class="reveal">
+      <p class="kicker">El torcedor</p>
+      <h3>Cuarenta minutos, un par de manos.</h3>
+      <p>Los viernes a la tarde armamos en la casa, delante tuyo. Te sentás, elegís la liga y te llevás el habano que viste nacer.</p>
+    </div>
+    <div class="foto reveal"><img src="a/torcedor.webp" alt="Manos de un torcedor armando un habano" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="reserva" id="reserva">
+  <div class="wrap dos">
+    <div class="reveal">
+      <p class="kicker">Vení a probar</p>
+      <h3>Reservá tu degustación.</h3>
+      <p>Una hora en la casa con un habano elegido para vos. Te escribimos por WhatsApp para confirmar el día.</p>
+    </div>
+    <div class="reveal">
+      <form id="form">
+        <label>Tu nombre<input name="nombre" required autocomplete="name"></label>
+        <label>Tu WhatsApp<input name="tel" type="tel" required inputmode="tel" autocomplete="tel"></label>
+        <label>Qué querés probar
+          <select name="vitola" id="vitola"><option>Robusto</option><option>Lancero</option><option>Churchill</option><option>Que me recomienden</option></select>
+        </label>
+        <button class="btn lleno" type="submit">Reservar degustación</button>
+        <p class="nota">Vista de muestra: la reserva no se envía a ningún lado.</p>
+      </form>
+      <div class="ok" id="ok" role="status"><h4></h4><p class="nota">Vista de muestra: en la página real te llega el aviso por WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Casa Tercio · Recoleta, Buenos Aires</span>
+    <span>Prohibida la venta a menores de 18 años. Fumar es perjudicial para la salud.</span>
+    <span>Negocio de ejemplo · Demo hecha por Insights</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TOTAL=161;
+  var chico=matchMedia('(max-width:759px)').matches;
+  var dir=chico?'m/':'f/';
+  var reducido=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var lienzo=document.getElementById('lienzo'),ctx=lienzo.getContext('2d',{alpha:false});
+  var escena=document.getElementById('escena'),velo=document.getElementById('velo'),tit=document.getElementById('tit'),riel=document.getElementById('riel');
+  var caps=[].slice.call(document.querySelectorAll('.cap')).map(function(el){return{el:el,a:+el.dataset.a,b:+el.dataset.b}});
+  var cuadros=new Array(TOTAL),actual=0,meta=0,dibujado=-1,ancho=0,alto=0,prog=0,andando=false;
+  function nombre(i){return dir+String(i+1).padStart(4,'0')+'.webp'}
+  function cargar(i){return new Promise(function(ok){if(cuadros[i])return ok();var im=new Image();im.decoding='async';im.onload=function(){cuadros[i]=im;if(i===0||Math.round(actual)===i)pedir(true);ok()};im.onerror=function(){ok()};im.src=nombre(i)})}
+  // Saltos 8-4-2-1: el scrub anda desde el primer momento y gana cuadros mientras baja, sin esperar 150 imagenes.
+  function tanda(paso,base){var lista=[];for(var i=base;i<TOTAL;i+=paso)if(!cuadros[i])lista.push(i);return lista}
+  function porTandas(lista,n){var i=0;function sig(){if(i>=lista.length)return Promise.resolve();var parte=lista.slice(i,i+=n);return Promise.all(parte.map(cargar)).then(sig)}return sig()}
+  cargar(0).then(function(){return cargar(TOTAL-1)}).then(function(){return porTandas(tanda(8,0),6)}).then(function(){return porTandas(tanda(4,0),6)}).then(function(){return porTandas(tanda(2,0),8)}).then(function(){return porTandas(tanda(1,0),8)});
+  function medir(){
+    var dpr=Math.min(devicePixelRatio||1,2),w=innerWidth,h=lienzo.parentNode.clientHeight;
+    if(w===ancho&&Math.abs(h-alto)<100&&lienzo.width)return;
+    ancho=w;alto=h;lienzo.width=w*dpr;lienzo.height=h*dpr;dibujado=-1;pedir(true);
+  }
+  function cercano(i){if(cuadros[i])return cuadros[i];for(var d=1;d<TOTAL;d++){if(cuadros[i-d])return cuadros[i-d];if(cuadros[i+d])return cuadros[i+d]}return null}
+  function dibujar(i){
+    var im=cercano(i);if(!im)return;
+    var W=lienzo.width,H=lienzo.height,iw=im.naturalWidth,ih=im.naturalHeight;
+    // En vertical el cuadro 16:9 entra entero un 30% mas grande: el recorte come sombra, no hojas.
+    var e=W/H>=iw/ih*.8?Math.max(W/iw,H/ih):Math.min(W/iw*1.3,H/ih);
+    var dw=iw*e,dh=ih*e;
+    ctx.fillStyle='#0a0604';ctx.fillRect(0,0,W,H);
+    ctx.drawImage(im,(W-dw)/2,(H-dh)/2,dw,dh);
+  }
+  function suave(a,b,x){var t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t)}
+  function capas(){
+    var p=prog,mueve=reducido?0:1;
+    velo.style.opacity=(.66*(1-suave(0,.1,p))).toFixed(3);
+    var t=1-suave(.02,.1,p);tit.style.opacity=t.toFixed(3);tit.style.transform='translateY('+(-40*(1-t)*mueve).toFixed(1)+'px)';tit.style.visibility=t<=0?'hidden':'visible';
+    caps.forEach(function(c){
+      var e=suave(c.a,c.a+.035,p),s=1-suave(c.b-.035,c.b,p),o=Math.min(e,s);
+      c.el.style.opacity=o.toFixed(3);c.el.style.transform='translateY('+((1-e)*22*mueve-(1-s)*16*mueve).toFixed(1)+'px)';c.el.style.pointerEvents=o>.6?'auto':'none';c.el.style.visibility=o<=0?'hidden':'visible';
+    });
+    riel.style.transform='scaleY('+p.toFixed(3)+')';
+    if(!reducido)lienzo.style.transform='scale('+(1+.05*p).toFixed(4)+')';
+  }
+  function bucle(){
+    var d=meta-actual;
+    actual=Math.abs(d)<.3||reducido?meta:actual+d*.14;
+    var i=Math.round(actual);
+    if(i!==dibujado){dibujar(i);dibujado=i}
+    if(actual!==meta)requestAnimationFrame(bucle);else andando=false;
+  }
+  function pedir(forzar){if(forzar)dibujado=-1;if(!andando){andando=true;requestAnimationFrame(bucle)}}
+  function alBajar(){
+    var r=escena.getBoundingClientRect(),largo=r.height-lienzo.parentNode.clientHeight;
+    prog=Math.min(1,Math.max(0,-r.top/largo));
+    // Quieto al principio bajo el titulo y al final sobre el habano terminado: da aire a los dos.
+    meta=Math.min(1,Math.max(0,(prog-.08)/.84))*(TOTAL-1);
+    capas();pedir(false);
+  }
+  addEventListener('scroll',alBajar,{passive:true});
+  addEventListener('resize',function(){medir();alBajar()});
+  medir();alBajar();
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('si');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  var sel=document.getElementById('vitola');
+  document.querySelectorAll('[data-vitola]').forEach(function(b){b.addEventListener('click',function(){sel.value=b.dataset.vitola;document.getElementById('reserva').scrollIntoView({behavior:reducido?'auto':'smooth'})})});
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();var d=new FormData(e.target),ok=document.getElementById('ok');
+    ok.querySelector('h4').textContent='Listo, '+String(d.get('nombre')).trim().split(' ')[0]+'. Te guardamos un '+d.get('vitola').toLowerCase().replace('que me recomienden','habano a tu medida')+'.';
+    e.target.style.display='none';ok.style.display='block';
+  });
+})();
+</script>
+</body>
+</html>
